@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h2 id="greeting">Loading...</h2>
+    <a href="/index.html" class="back-btn">Back to Form</a>
+    <script>
+        fetch('/greet')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('greeting').textContent = `Hi ${data.name}`;
+            })
+            .catch(error => {
+                document.getElementById('greeting').textContent = 'Error loading greeting.';
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h2>Enter Your Name</h2>
+    <form onsubmit="submitName(event)">
+        <input type="text" name="name" required />
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function submitName(event) {
+            event.preventDefault();
+            const name = event.target.name.value;
+            fetch('/index', { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify({ name }) 
+            })
+                .then(() => window.open('/greeting.html', '_blank'));
+        }
+    </script>
+</body>
+</html>
